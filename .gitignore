@@ -1,1 +1,16 @@
-.metadata
+# Eclipse
+.metadata/
+*.class
+.project
+.classpath
+.settings/
+bin/
+target/
+
+# IDE
+*.iml
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

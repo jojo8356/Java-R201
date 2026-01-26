@@ -6,7 +6,8 @@ Travaux pratiques du module R201 - Développement orienté objets en Java.
 
 ```
 .
-├── TD1/          # Premier TD
+├── TD1/                    # Premier TD
+├── git-commit-helper.sh    # Script d'aide aux commits
 └── README.md
 ```
 
@@ -14,6 +15,23 @@ Travaux pratiques du module R201 - Développement orienté objets en Java.
 
 - Java JDK 11 ou supérieur
 - Eclipse IDE (recommandé)
+
+## Outil de commit
+
+Le script `git-commit-helper.sh` analyse vos fichiers Java et génère automatiquement des messages de commit professionnels.
+
+### Utilisation
+
+```bash
+./git-commit-helper.sh
+```
+
+### Fonctionnalités
+
+- Détecte les fichiers ajoutés, modifiés et supprimés
+- Identifie le type de classe (interface, abstraite, enum, etc.)
+- Détecte l'héritage et les implémentations
+- Suggère un message de commit formaté (feat, refactor, chore)
 
 ## Auteur
 
