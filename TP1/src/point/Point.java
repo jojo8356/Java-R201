@@ -45,8 +45,24 @@ public class Point {
      * default str method
      * @return str
      */
+    @Override
     public String toString(){
         return "[" + this.x + ", " + this.y + "]";
+    }
+
+    /**
+     * Vérifie l'égalité entre deux points (mêmes coordonnées)
+     * @param obj l'objet à comparer
+     * @return true si les deux points ont les mêmes coordonnées
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Point)) return false;
+        Point other = (Point) obj;
+        return Double.compare(this.x, other.x) == 0
+            && Double.compare(this.y, other.y) == 0;
     }
 
     /**

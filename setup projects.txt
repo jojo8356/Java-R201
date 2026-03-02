@@ -1,0 +1,86 @@
+Checker Framework + Value Objects + SpotBugs + Error Prone (Google) + Maven
+
+💡 Stratégie mémoire et bugs en Java
+1️⃣ Pendant le développement : rapide et itératif
+
+IDE + analyse statique : IntelliJ, Eclipse ou VS Code
+
+Détecte NullPointerException, mauvais casts, variables inutilisées
+
+SpotBugs / Error Prone
+
+Vérifie les patterns de code dangereux (use-after-free n’existe pas en Java, mais NPE, index out of bounds, fuites d’objets via références persistantes…)
+
+Checker Framework (optionnel)
+
+Permet d’annoter les nulls et contraintes de type pour vérifier la “sémantique métier”
+
+Rapide → feedback immédiat pendant dev
+
+2️⃣ Avant release / audit : contrôle complet
+
+SpotBugs + FindSecBugs → audit approfondi
+
+Vérifie des cas subtils que tu pourrais rater, comme :
+
+Fuites mémoire liées à des caches ou listeners persistants
+
+Concurrence mal gérée
+
+Mauvais usage d’APIs sensibles
+
+Analyse des fuites JVM : outils comme VisualVM, JConsole, ou Eclipse MAT
+
+Identifie les objets qui restent en mémoire et détecte les fuites “réelles”
+
+3️⃣ Différence clé avec C/Rust
+
+Java gère la mémoire via le garbage collector
+
+Pas besoin de malloc/free → pas de use-after-free classique
+
+Les outils se concentrent sur :
+
+NullPointerException
+
+Concurrence / Thread issues
+
+Fuites par objets persistants
+
+Mauvais usages API
+
+4️⃣ Combo idéal Java
+Phase	Outil	Objectif
+Dev quotidien	IDE + SpotBugs	Catch rapide des NPE, casts, patterns dangereux
+Développement strict	Checker Framework	Null-safety et types métier
+CI / pré-prod	SpotBugs + FindSecBugs	Audit complet et sécurité
+Prod	Profiler JVM (VisualVM, MAT)	Vérification fuites mémoire et perf
+5️⃣ Exemple pratique
+
+SpotBugs dans Maven :
+
+<plugin>
+  <groupId>com.github.spotbugs</groupId>
+  <artifactId>spotbugs-maven-plugin</artifactId>
+  <version>4.7.3.0</version>
+  <configuration>
+    <effort>Max</effort>
+    <threshold>Low</threshold>
+  </configuration>
+</plugin>
+
+
+Puis :
+
+mvn compile spotbugs:check
+
+
+➡️ Détecte tous les problèmes potentiels avant release, exactement comme Valgrind en C.
+
+✅ Résumé
+
+En Java, c’est l’équivalent “ASan vs Valgrind” mais adapté à la JVM :
+
+Dev rapide → SpotBugs / IDE inspections (ASan)
+
+Audit complet avant release → SpotBugs + FindSecBugs + profilers JVM (Valgrind)

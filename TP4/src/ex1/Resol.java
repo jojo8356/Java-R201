@@ -1,12 +1,12 @@
 package ex1;
 
 public class Resol {
+	private static int k;
+
 	public static void main(String[] args) {
-		int k;
-		
 		try {
-			k = 1 / Integer.parseInt(args[0]);
-		} catch (RuntimeException e) { // classe parente des 2 autres exceptions
+			setK(1 / Integer.parseInt(args[0]));
+		} catch (RuntimeException e) { // classe parente des 2 autres exceptions, faut passer avant les 2 autres, afin que ça marche, spé -> global et pas l'inverse
 			System.err.println("Runtime "+e);
 		}
 		/*
@@ -16,5 +16,13 @@ public class Resol {
 			System.out.println("Arithmetic "+e);
 		}
 		*/
+	}
+
+	public static int getK() {
+		return k;
+	}
+
+	public static void setK(int k) {
+		Resol.k = k;
 	}
 }
